@@ -251,8 +251,27 @@
   .sets-head { display:grid; grid-template-columns:34px 1fr 1fr 1fr; gap:6px; margin-bottom:7px; }
   .sets-col-lbl { font-size:9px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); text-align:center; }
 
-  .set-row { display:grid; grid-template-columns:34px 1fr 1fr 1fr; gap:6px; margin-bottom:7px; align-items:center; }
+  .set-row { display:grid; grid-template-columns:28px 1fr 1fr 1fr 42px; gap:5px; margin-bottom:7px; align-items:center; }
   .set-num  { font-size:12px; font-weight:700; color:var(--text-sec); text-align:center; }
+
+  /* Série concluída */
+  .set-row.set-done { opacity:0.5; }
+  .set-row.set-done .set-input { background:var(--success-dim); border-color:rgba(77,255,160,0.3); }
+
+  /* Botão ✓ por série */
+  .set-check-btn {
+    width:38px; height:38px;
+    border-radius:var(--radius-sm);
+    border:none; cursor:pointer;
+    font-size:17px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; transition:var(--transition);
+    background:var(--surface3); color:var(--text-muted);
+    border:1px solid var(--border);
+  }
+  .set-check-btn:active { transform:scale(0.88); }
+  .set-check-btn.checked { background:var(--success-dim); color:var(--success); border-color:rgba(77,255,160,0.4); }
+  .set-check-btn[disabled]{ opacity:0.3; cursor:default; }
 
   .set-input {
     background:var(--surface2); border:1px solid var(--border);
@@ -857,7 +876,7 @@ function startWorkout(planId) {
     activeEx:  0,
     exercises: plan.exercises.map(ex => ({
       ...ex,
-      sets: Array.from({ length: ex.series }, () => ({ reps:null, load:ex.suggestedLoad })),
+      sets: Array.from({ length: ex.series }, () => ({ reps:null, load:ex.suggestedLoad, done:false })),
       note: '',
       completed: false,
     })),
@@ -906,26 +925,36 @@ function renderActiveWorkout() {
 
     if (isActive || isDone) {
       html += `<div class="ex-body">
-      <div class="sets-head">
-        <div class="sets-col-lbl">Série</div>
+      <div class="sets-head" style="grid-template-columns:28px 1fr 1fr 1fr 42px">
+        <div class="sets-col-lbl">Nº</div>
         <div class="sets-col-lbl">Carga(kg)</div>
         <div class="sets-col-lbl">Meta</div>
         <div class="sets-col-lbl">Feitas</div>
+        <div class="sets-col-lbl">✓</div>
       </div>`;
 
       ex.sets.forEach((set, si) => {
-        const rCls = set.reps !== null ? (set.reps >= ex.targetReps ? 'achieved' : 'missed') : '';
+        const rCls    = set.reps !== null ? (set.reps >= ex.targetReps ? 'achieved' : 'missed') : '';
+        const setDone = !!set.done;
+        const rowCls  = setDone ? 'set-row set-done' : 'set-row';
+        const btnCls  = setDone ? 'set-check-btn checked' : 'set-check-btn';
+        const ro      = (isDone || setDone) ? 'readonly' : '';
         html += `
-        <div class="set-row">
+        <div class="${rowCls}" id="setrow-${ei}-${si}">
           <div class="set-num">${si+1}</div>
           <input type="number" class="set-input" value="${set.load}" min="0" step="0.5"
-            inputmode="decimal" ${isDone?'readonly':''}
+            inputmode="decimal" ${ro}
             onchange="setVal(${ei},${si},'load',this.value)">
           <div class="set-target">${ex.targetReps}</div>
           <input type="number" class="set-input ${rCls}" value="${set.reps!==null?set.reps:''}"
-            placeholder="—" min="0" inputmode="numeric" ${isDone?'readonly':''}
+            id="reps-${ei}-${si}"
+            placeholder="—" min="0" inputmode="numeric" ${ro}
             onchange="setVal(${ei},${si},'reps',this.value)"
             oninput="hlSet(this,${ex.targetReps})">
+          <button class="${btnCls}" onclick="completeSet(${ei},${si})"
+            ${isDone?'disabled':''} title="${setDone?'Desmarcar série':'Concluir série'}">
+            ${setDone ? '✓' : '○'}
+          </button>
         </div>`;
       });
 
@@ -941,8 +970,7 @@ function renderActiveWorkout() {
       if (!isDone) {
         html += `
         <div class="ex-actions">
-          <button class="btn btn-primary" style="flex:1" onclick="completeEx(${ei})">✓ Concluir</button>
-          <button class="btn btn-secondary btn-icon" onclick="startTimerDefault()" title="Descanso">⏱</button>
+          <button class="btn btn-primary" style="flex:1" onclick="completeEx(${ei})">✓ Concluir Exercício</button>
         </div>`;
       } else {
         html += `<div style="margin-top:10px">
@@ -1000,13 +1028,80 @@ function hlSet(input, target) {
 function completeEx(ei) {
   const wo = state.activeWorkout;
   const ex = wo.exercises[ei];
-  ex.sets.forEach(s => { if (s.reps === null) s.reps = 0; });
+  ex.sets.forEach(s => { if (s.reps === null) s.reps = 0; s.done = true; });
   ex.completed = true;
   const next = wo.exercises.findIndex((e, i) => i > ei && !e.completed);
   wo.activeEx = next !== -1 ? next : ei;
-  startTimerDefault();
+  stopTimer();
   renderActiveWorkout();
   toast('Exercício concluído! 💪');
+}
+
+/* Conclui uma série individual → dispara timer de descanso */
+function completeSet(ei, si) {
+  const wo  = state.activeWorkout;
+  const ex  = wo.exercises[ei];
+  const set = ex.sets[si];
+
+  // Toggle: se já estava done, desmarca
+  if (set.done) {
+    set.done = false;
+    // Atualiza visualmente sem re-renderizar tudo
+    const row = document.getElementById(`setrow-${ei}-${si}`);
+    if (row) {
+      row.classList.remove('set-done');
+      const btn = row.querySelector('.set-check-btn');
+      if (btn) { btn.classList.remove('checked'); btn.textContent = '○'; }
+      row.querySelectorAll('.set-input').forEach(i => i.removeAttribute('readonly'));
+    }
+    return;
+  }
+
+  // Sincroniza reps do input antes de marcar
+  const repsInput = document.getElementById(`reps-${ei}-${si}`);
+  if (repsInput) {
+    const v = parseInt(repsInput.value, 10);
+    set.reps = isNaN(v) ? 0 : v;
+  }
+  const loadInput = document.querySelector(`#setrow-${ei}-${si} input[type=number]`);
+  if (loadInput) {
+    const v = parseFloat(loadInput.value);
+    set.load = isNaN(v) ? set.load : v;
+  }
+
+  set.done = true;
+
+  // Atualiza visualmente sem re-renderizar tudo (mais rápido, sem perder foco)
+  const row = document.getElementById(`setrow-${ei}-${si}`);
+  if (row) {
+    row.classList.add('set-done');
+    const btn = row.querySelector('.set-check-btn');
+    if (btn) { btn.classList.add('checked'); btn.textContent = '✓'; }
+    row.querySelectorAll('.set-input').forEach(i => i.setAttribute('readonly', ''));
+  }
+
+  // Timer de descanso — só dispara se não for a última série do exercício
+  const allDone = ex.sets.every(s => s.done);
+  if (!allDone) {
+    startTimerDefault();
+  }
+
+  // Foca no campo de reps da próxima série
+  const nextReps = document.getElementById(`reps-${ei}-${si+1}`);
+  if (nextReps) {
+    setTimeout(() => nextReps.focus(), 350);
+  }
+
+  // Se todas as séries concluídas → completa o exercício automaticamente
+  if (allDone) {
+    setTimeout(() => {
+      ex.completed = true;
+      const next = wo.exercises.findIndex((e, i) => i > ei && !e.completed);
+      wo.activeEx = next !== -1 ? next : ei;
+      renderActiveWorkout();
+      toast('Exercício concluído! 💪');
+    }, 300);
+  }
 }
 
 function undoEx(ei) {
