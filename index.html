@@ -530,6 +530,132 @@
   @media (min-width:481px) {
     #app { border-left:1px solid var(--border); border-right:1px solid var(--border); }
   }
+
+  /* ── SUBSTITUTE PICKER ── */
+  .swap-btn {
+    display:inline-flex; align-items:center; gap:5px;
+    background:var(--surface3); border:1px solid var(--border);
+    border-radius:100px; padding:4px 10px;
+    font-size:10px; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-sec);
+    cursor:pointer; transition:var(--transition);
+    margin-left:6px; flex-shrink:0;
+  }
+  .swap-btn:active { background:var(--accent-dim); color:var(--accent); border-color:var(--border-accent); transform:scale(0.94); }
+
+  .sub-list { display:flex; flex-direction:column; gap:9px; }
+
+  .sub-item {
+    background:var(--surface2);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:13px 14px;
+    cursor:pointer;
+    transition:var(--transition);
+    display:flex; align-items:flex-start; gap:11px;
+  }
+  .sub-item:active { border-color:var(--border-accent); background:var(--accent-dim); transform:scale(0.98); }
+
+  .sub-item-icon { font-size:22px; flex-shrink:0; margin-top:1px; }
+  .sub-item-name { font-size:15px; font-weight:800; margin-bottom:3px; }
+  .sub-item-meta { font-size:11px; color:var(--text-sec); margin-bottom:5px; }
+  .sub-item-tip  { font-size:11px; color:var(--text-muted); line-height:1.45; font-style:italic; }
+  .sub-item-load { display:inline-flex; align-items:center; gap:4px; background:var(--accent-dim); border:1px solid var(--border-accent); border-radius:100px; padding:2px 8px; font-size:10px; font-weight:800; color:var(--accent); margin-top:5px; }
+
+  .sub-equip-badge { display:inline-flex; align-items:center; gap:3px; background:var(--surface3); border:1px solid var(--border); border-radius:100px; padding:2px 8px; font-size:9px; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; color:var(--text-muted); }
+
+  .sub-group-label { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:12px; padding:8px 12px; background:var(--accent-dim); border-radius:var(--radius-sm); border:1px solid var(--border-accent); text-align:center; }
+
+  .sub-current { background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:11px 14px; margin-bottom:14px; }
+  .sub-current-lbl  { font-size:9px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:3px; }
+  .sub-current-name { font-size:14px; font-weight:700; color:var(--text-sec); }
+
+  .sub-none { text-align:center; padding:28px 14px; color:var(--text-muted); font-size:13px; line-height:1.6; }
+
+  /* ── MOVE EXERCISE BUTTONS ── */
+  .move-btns {
+    display:flex; flex-direction:column; gap:3px;
+    flex-shrink:0; margin-left:6px;
+  }
+  .move-btn {
+    width:30px; height:26px;
+    background:var(--surface3); border:1px solid var(--border);
+    border-radius:6px; color:var(--text-sec);
+    font-size:13px; display:flex; align-items:center;
+    justify-content:center; cursor:pointer;
+    transition:var(--transition); line-height:1;
+  }
+  .move-btn:active { background:var(--accent-dim); color:var(--accent); border-color:var(--border-accent); transform:scale(0.88); }
+  .move-btn:disabled { opacity:0.2; cursor:default; }
+
+  /* ── BODY STATS ── */
+  .body-inputs {
+    display:grid; grid-template-columns:1fr 1fr; gap:9px;
+    padding:0 14px 4px;
+  }
+  .body-input-wrap { display:flex; flex-direction:column; gap:5px; }
+  .body-input-lbl  { font-size:9px; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; color:var(--text-sec); }
+  .body-input-row  { display:flex; align-items:center; gap:0; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; }
+  .body-input-field {
+    flex:1; background:transparent; border:none; outline:none;
+    padding:12px 10px; font-size:18px; font-weight:800; color:var(--text);
+    font-family:inherit; -moz-appearance:textfield; width:0;
+  }
+  .body-input-field::-webkit-outer-spin-button,
+  .body-input-field::-webkit-inner-spin-button { -webkit-appearance:none; }
+  .body-input-field:focus { background:var(--accent-dim); }
+  .body-input-unit { font-size:11px; font-weight:700; color:var(--text-muted); padding-right:10px; flex-shrink:0; }
+
+  /* Sex selector */
+  .sex-selector { display:flex; gap:0; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; }
+  .sex-btn      { flex:1; padding:12px 8px; text-align:center; font-size:13px; font-weight:800; color:var(--text-muted); cursor:pointer; border:none; background:none; transition:var(--transition); }
+  .sex-btn.active { background:var(--accent-dim); color:var(--accent); }
+
+  /* Goal type */
+  .goal-selector { display:flex; gap:0; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; margin:0 14px; }
+  .goal-btn      { flex:1; padding:11px 6px; text-align:center; font-size:10px; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; color:var(--text-muted); cursor:pointer; border:none; background:none; transition:var(--transition); }
+  .goal-btn.active { background:var(--accent-dim); color:var(--accent); }
+
+  /* IMC gauge bar */
+  .imc-gauge-wrap { padding:0 14px; margin-bottom:6px; }
+  .imc-gauge-bar  { position:relative; height:10px; border-radius:6px; overflow:visible;
+    background:linear-gradient(to right, #4DFFA0 0%, #C8F500 22%, #FFB347 45%, #FF7A00 68%, #FF4D4D 100%);
+    margin:8px 0 4px;
+  }
+  .imc-gauge-needle {
+    position:absolute; top:50%; transform:translate(-50%,-50%);
+    width:4px; height:20px; background:var(--text); border-radius:2px;
+    box-shadow:0 0 6px rgba(0,0,0,0.6);
+    transition:left 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .imc-gauge-labels { display:flex; justify-content:space-between; font-size:8px; color:var(--text-muted); font-weight:700; }
+
+  /* Stat cards grid */
+  .body-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; padding:0 14px 4px; }
+  .bstat-card { background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 12px; }
+  .bstat-label { font-size:9px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-sec); margin-bottom:6px; }
+  .bstat-val   { font-size:26px; font-weight:900; letter-spacing:-1px; line-height:1; }
+  .bstat-sub   { font-size:11px; color:var(--text-sec); margin-top:4px; line-height:1.4; }
+  .bstat-card.highlight { border-color:var(--border-accent); background:var(--accent-dim); }
+  .bstat-card.highlight .bstat-val { color:var(--accent); }
+
+  /* Goals table */
+  .goals-table { margin:0 14px; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; }
+  .goals-row   { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border); }
+  .goals-row:last-child { border-bottom:none; }
+  .goals-row.header { background:var(--surface3); }
+  .goals-cell  { padding:11px 12px; font-size:12px; font-weight:600; color:var(--text-sec); }
+  .goals-row.header .goals-cell { font-size:9px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
+  .goals-cell.accent { color:var(--accent); font-weight:800; font-size:14px; }
+  .goals-cell.danger { color:var(--warning); font-weight:800; font-size:14px; }
+  .goals-cell.name   { color:var(--text); font-weight:700; }
+
+  /* TMB card */
+  .tmb-card { margin:0 14px; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; }
+  .tmb-row  { display:flex; align-items:center; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border); }
+  .tmb-row:last-child { border-bottom:none; }
+  .tmb-lbl  { font-size:12px; color:var(--text-sec); }
+  .tmb-val  { font-size:14px; font-weight:800; color:var(--text); }
   </style>
 </head>
 <body>
@@ -641,12 +767,123 @@ const DEFAULT_PLANS = [
     ]},
 ];
 
+/* ================================================================
+   BANCO DE SUBSTITUTOS — agrupados por músculo
+   Cada exercício do plano tem um muscleGroup.
+   O picker filtra por grupo e exibe alternativas.
+================================================================ */
+const MUSCLE_GROUPS = {
+  peito:     'Peito',
+  triceps:   'Tríceps',
+  costas:    'Costas',
+  biceps:    'Bíceps',
+  pernas:    'Pernas',
+  ombro:     'Ombro',
+  panturrilha: 'Panturrilha',
+};
+
+// Mapa exercícioId → grupo muscular (para os planos padrão)
+const EX_MUSCLE_MAP = {
+  p1:'peito', p2:'peito', p3:'peito',
+  p4:'triceps', p5:'triceps',
+  q1:'pernas', q2:'pernas', q3:'pernas', q4:'pernas',
+  q5:'panturrilha',
+  c1:'costas', c2:'costas', c3:'costas',
+  c4:'biceps',
+  o1:'ombro', o2:'ombro', o3:'ombro',
+  b1:'biceps', b2:'biceps', b3:'triceps', b4:'triceps',
+};
+
+// Banco de alternativas por grupo muscular
+// loadFactor: multiplicador aplicado sobre a carga atual para sugerir a carga da alternativa
+const SUBSTITUTES_DB = {
+  peito: [
+    { name:'Supino Livre',              equipment:'Barra',    loadFactor:1.0,  tip:'Exercício base. Use segurança.' },
+    { name:'Supino Halteres Plano',     equipment:'Halter',   loadFactor:0.35, tip:'Cada halter = ~35% da carga atual.' },
+    { name:'Supino Inclinado Máquina',  equipment:'Máquina',  loadFactor:0.9,  tip:'Foco na parte superior do peito.' },
+    { name:'Crossover Cabo',            equipment:'Cabo',     loadFactor:0.25, tip:'Ótimo para finalizar. Foco na contração.' },
+    { name:'Flexão de Braços',          equipment:'Livre',    loadFactor:null, tip:'Sem equipamento. 3×até a falha.' },
+    { name:'Peck Deck Invertido',       equipment:'Máquina',  loadFactor:0.8,  tip:'Muda o ângulo de ataque no peito.' },
+  ],
+  triceps: [
+    { name:'Tríceps Pulley Barra',      equipment:'Cabo',     loadFactor:1.0,  tip:'Troque a corda pela barra reta.' },
+    { name:'Tríceps Testa Halteres',    equipment:'Halter',   loadFactor:0.35, tip:'Cada halter = ~35% da carga.' },
+    { name:'Tríceps Coice',             equipment:'Halter',   loadFactor:0.3,  tip:'Mantém tensão no pico da contração.' },
+    { name:'Mergulho (Banco)',           equipment:'Banco',    loadFactor:null, tip:'Sem peso. Controla a descida.' },
+    { name:'Tríceps Unilateral Cabo',   equipment:'Cabo',     loadFactor:0.45, tip:'Cada lado separado. Corrige desequilíbrios.' },
+    { name:'Extensão Halteres Acima',   equipment:'Halter',   loadFactor:0.4,  tip:'Com um halter seguro com as duas mãos.' },
+  ],
+  costas: [
+    { name:'Puxada Pega Fechada',       equipment:'Cabo',     loadFactor:1.0,  tip:'Troca a pegada aberta pela fechada.' },
+    { name:'Remada Máquina',            equipment:'Máquina',  loadFactor:1.1,  tip:'Suporta mais carga que a remada livre.' },
+    { name:'Puxada Neutra (Triângulo)', equipment:'Cabo',     loadFactor:1.0,  tip:'Pegada neutra ativa mais o bíceps.' },
+    { name:'Remada Halteres',           equipment:'Halter',   loadFactor:0.5,  tip:'Unilateral. Apoie o joelho no banco.' },
+    { name:'Remada Cavalinho',          equipment:'Cabo',     loadFactor:0.9,  tip:'Duas mãos no triângulo, cotovelos abertos.' },
+    { name:'Pulldown Reto Cabo',        equipment:'Cabo',     loadFactor:0.5,  tip:'Foco nos serráteis e dorsais inferiores.' },
+    { name:'Hiperextensão',             equipment:'Banco',    loadFactor:null, tip:'Lombar e glúteos. 3×15 controlado.' },
+  ],
+  biceps: [
+    { name:'Rosca Direta Halteres',     equipment:'Halter',   loadFactor:0.4,  tip:'Cada braço separado. Supinação no topo.' },
+    { name:'Rosca Martelo',             equipment:'Halter',   loadFactor:0.45, tip:'Pegada neutra. Ativa braquial.' },
+    { name:'Rosca Scott Máquina',       equipment:'Máquina',  loadFactor:0.9,  tip:'Mais estável. Foco na parte baixa.' },
+    { name:'Rosca Concentrada',         equipment:'Halter',   loadFactor:0.35, tip:'Apoie o cotovelo na coxa. Sem balanço.' },
+    { name:'Rosca Cabo Baixo',          equipment:'Cabo',     loadFactor:0.8,  tip:'Tensão constante. Ótimo para pump.' },
+    { name:'Rosca 21',                  equipment:'Barra',    loadFactor:0.6,  tip:'7 parciais baixo + 7 alto + 7 completas.' },
+  ],
+  pernas: [
+    { name:'Hack Squat',                equipment:'Máquina',  loadFactor:0.85, tip:'Joelhos à frente. Foco no quadríceps.' },
+    { name:'Agachamento Livre',         equipment:'Barra',    loadFactor:0.7,  tip:'Movimento completo. Use safety bars.' },
+    { name:'Passada (Avanço)',          equipment:'Halter',   loadFactor:0.25, tip:'Cada halter = ~25% da carga do leg.' },
+    { name:'Agachamento Goblet',        equipment:'Halter',   loadFactor:0.15, tip:'Um halter na vertical. Ótimo para form.' },
+    { name:'Cadeira Extensora',         equipment:'Máquina',  loadFactor:null, tip:'Isolamento do quadríceps. Controla a descida.' },
+    { name:'Stiff (RDL)',               equipment:'Barra',    loadFactor:0.5,  tip:'Posterior de coxa e glúteos. Costas neutras.' },
+    { name:'Agachamento Búlgaro',       equipment:'Halter',   loadFactor:0.2,  tip:'Pé traseiro no banco. Unilateral.' },
+  ],
+  ombro: [
+    { name:'Desenvolvimento Halteres',  equipment:'Halter',   loadFactor:0.35, tip:'Cada halter = ~35% da carga atual.' },
+    { name:'Elevação Frontal',          equipment:'Halter',   loadFactor:0.3,  tip:'Feixe anterior. Alterna os braços.' },
+    { name:'Elevação Lateral Cabo',     equipment:'Cabo',     loadFactor:0.7,  tip:'Tensão constante vs halter. Prefira cabo.' },
+    { name:'Arnold Press',              equipment:'Halter',   loadFactor:0.3,  tip:'Rotação completa. 3×10 controlado.' },
+    { name:'Desenvolvimento Barra',     equipment:'Barra',    loadFactor:0.8,  tip:'Mais estabilidade. Pegada na largura dos ombros.' },
+    { name:'Face Pull',                 equipment:'Cabo',     loadFactor:0.5,  tip:'Saúde do manguito rotador. Não negligencie.' },
+  ],
+  panturrilha: [
+    { name:'Panturrilha Em Pé Livre',   equipment:'Livre',    loadFactor:null, tip:'Num degrau. Amplitude total. 4×20.' },
+    { name:'Panturrilha Sentado',       equipment:'Máquina',  loadFactor:0.5,  tip:'Isola o sóleo (músculo profundo).' },
+    { name:'Panturrilha No Leg Press',  equipment:'Máquina',  loadFactor:1.2,  tip:'Pés na borda baixa. Amplitude completa.' },
+    { name:'Salto com Corda',           equipment:'Livre',    loadFactor:null, tip:'3 min contínuo = excelente panturrilha.' },
+  ],
+};
+
+/* Infere grupo muscular de qualquer exercício (plano padrão ou customizado) */
+function getExMuscleGroup(ex) {
+  // 1. Verifica mapa fixo (planos padrão)
+  if (EX_MUSCLE_MAP[ex.id]) return EX_MUSCLE_MAP[ex.id];
+
+  // 2. Heurística por nome (para exercícios customizados)
+  const n = (ex.name || '').toLowerCase();
+  if (/peito|supino|peck|cross/.test(n))         return 'peito';
+  if (/trícep|tricep|testa|corda|pulley/.test(n)) return 'triceps';
+  if (/costa|remada|puxada|pull|row/.test(n))     return 'costas';
+  if (/bícep|bicep|rosca/.test(n))               return 'biceps';
+  if (/perna|leg|agach|stiff|flexora|extensora|hack/.test(n)) return 'pernas';
+  if (/ombro|shoulder|elev|desen|arnold|face/.test(n)) return 'ombro';
+  if (/panturrilha|calf|sóleo/.test(n))          return 'panturrilha';
+  return null;
+}
+
 const DEFAULT_SETTINGS = {
   userName:      '',
-  restTime:      90,    // segundos
-  progressStep:  2.5,   // kg
+  restTime:      90,
+  progressStep:  2.5,
   notifEnabled:  false,
   notifTime:     '08:00',
+  // Dados corporais
+  weight:        null,   // kg
+  height:        null,   // cm
+  age:           null,   // anos
+  sex:           'M',    // 'M' | 'F'
+  goalType:      'lose', // 'lose' | 'gain' | 'maintain'
 };
 
 /* ================================================================
@@ -915,12 +1152,24 @@ function renderActiveWorkout() {
 
     html += `<div class="${cls}" id="excard-${ei}">
     <div class="ex-head" onclick="toggleEx(${ei})">
-      <div>
-        <div class="ex-num">EXERCÍCIO ${ei+1}</div>
+      <div style="flex:1;min-width:0">
+        <div class="ex-num" style="display:flex;align-items:center;gap:6px">
+          <span>EXERCÍCIO ${ei+1}</span>
+          ${isActive ? `<button class="swap-btn" onclick="event.stopPropagation();openSubstitutePicker(${ei})" title="Máquina ocupada? Trocar exercício">⇄ Trocar</button>` : ''}
+          ${ex.substituted ? `<span class="badge badge-warning" style="font-size:8px">SUBSTITUÍDO</span>` : ''}
+        </div>
         <div class="ex-name">${ex.name}</div>
         <div class="ex-hint">${ex.series}×${ex.targetReps} reps · ${ex.suggestedLoad}kg sugerido${exPR ? ' · 🏆 '+exPR.load+'kg' : ''}</div>
+        ${ex.originalName ? `<div style="font-size:10px;color:var(--text-muted);margin-top:2px">Substituiu: ${ex.originalName}</div>` : ''}
       </div>
-      <div class="ex-status">${isDone ? '✅' : isActive ? '▶' : '○'}</div>
+      <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
+        ${!isDone ? `
+        <div class="move-btns" onclick="event.stopPropagation()">
+          <button class="move-btn" onclick="moveEx(${ei},-1)" ${ei === 0 || wo.exercises[ei-1]?.completed ? 'disabled' : ''} title="Mover para cima">↑</button>
+          <button class="move-btn" onclick="moveEx(${ei},+1)" ${ei === wo.exercises.length-1 ? 'disabled' : ''} title="Mover para baixo">↓</button>
+        </div>` : ''}
+        <div class="ex-status">${isDone ? '✅' : isActive ? '▶' : '○'}</div>
+      </div>
     </div>`;
 
     if (isActive || isDone) {
@@ -1108,6 +1357,32 @@ function undoEx(ei) {
   state.activeWorkout.exercises[ei].completed = false;
   state.activeWorkout.activeEx = ei;
   renderActiveWorkout();
+}
+
+/* Move um exercício pendente para cima ou para baixo na lista */
+function moveEx(ei, dir) {
+  const wo  = state.activeWorkout;
+  const exs = wo.exercises;
+  const target = ei + dir;
+
+  // Limites: não sai do array, não passa por cima de exercício concluído
+  if (target < 0 || target >= exs.length) return;
+  if (exs[target]?.completed) return;
+
+  // Troca
+  [exs[ei], exs[target]] = [exs[target], exs[ei]];
+
+  // Atualiza o activeEx para seguir o exercício que estava ativo
+  if (wo.activeEx === ei)     wo.activeEx = target;
+  else if (wo.activeEx === target) wo.activeEx = ei;
+
+  renderActiveWorkout();
+
+  // Scroll suave para o card que foi movido
+  requestAnimationFrame(() => {
+    const card = document.getElementById(`excard-${target}`);
+    if (card) card.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
 }
 
 function abandonWorkout() {
@@ -1649,15 +1924,15 @@ function deleteSession(id) {
 function renderProfile() {
   const s    = loadSettings();
   const data = load();
-  const prs  = loadPRs();
-  const totalVol = data.history.reduce((acc, sess) => {
-    return acc + sess.exercises.reduce((a2, ex) =>
-      a2 + ex.sets.reduce((a3, set) => a3 + set.load * set.reps, 0), 0);
-  }, 0);
+  const totalVol = data.history.reduce((acc, sess) =>
+    acc + sess.exercises.reduce((a2, ex) =>
+      a2 + ex.sets.reduce((a3, set) => a3 + set.load * set.reps, 0), 0), 0);
 
   const el = document.getElementById('view-profile');
   el.innerHTML = `
-  <div style="padding:24px 16px 16px;text-align:center">
+
+  <!-- ── Avatar ── -->
+  <div style="padding:22px 16px 14px;text-align:center">
     <div class="profile-avatar">💪</div>
     ${s.userName
       ? `<div class="profile-name">${esc(s.userName)}</div>`
@@ -1665,11 +1940,69 @@ function renderProfile() {
     <div class="profile-sub">${data.history.length} treinos · ${fmtVol(totalVol)} de volume total</div>
   </div>
 
-  <!-- Configurações -->
-  <div class="sec-head"><span class="sec-title">Configurações</span></div>
+  <!-- ══════════════════════════════════
+       DADOS CORPORAIS
+  ══════════════════════════════════ -->
+  <div class="sec-head"><span class="sec-title">Dados Corporais</span></div>
+
+  <!-- Inputs: Peso / Altura / Idade / Sexo -->
+  <div class="body-inputs">
+    <div class="body-input-wrap">
+      <div class="body-input-lbl">Peso atual</div>
+      <div class="body-input-row">
+        <input class="body-input-field" type="number" id="cfg-weight" inputmode="decimal"
+          min="30" max="300" step="0.1" placeholder="75"
+          value="${s.weight ?? ''}"
+          oninput="saveBodyField('weight', parseFloat(this.value)); refreshBodyStats()">
+        <span class="body-input-unit">kg</span>
+      </div>
+    </div>
+    <div class="body-input-wrap">
+      <div class="body-input-lbl">Altura</div>
+      <div class="body-input-row">
+        <input class="body-input-field" type="number" id="cfg-height" inputmode="numeric"
+          min="100" max="250" step="1" placeholder="175"
+          value="${s.height ?? ''}"
+          oninput="saveBodyField('height', parseFloat(this.value)); refreshBodyStats()">
+        <span class="body-input-unit">cm</span>
+      </div>
+    </div>
+    <div class="body-input-wrap">
+      <div class="body-input-lbl">Idade</div>
+      <div class="body-input-row">
+        <input class="body-input-field" type="number" id="cfg-age" inputmode="numeric"
+          min="10" max="100" step="1" placeholder="30"
+          value="${s.age ?? ''}"
+          oninput="saveBodyField('age', parseInt(this.value)); refreshBodyStats()">
+        <span class="body-input-unit">anos</span>
+      </div>
+    </div>
+    <div class="body-input-wrap">
+      <div class="body-input-lbl">Sexo</div>
+      <div class="sex-selector">
+        <button class="sex-btn ${s.sex==='M'?'active':''}" onclick="saveBodyField('sex','M');refreshBodyStats()">♂ Masc</button>
+        <button class="sex-btn ${s.sex==='F'?'active':''}" onclick="saveBodyField('sex','F');refreshBodyStats()">♀ Fem</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Objetivo -->
+  <div class="sec-head" style="padding-top:14px"><span class="sec-title">Objetivo</span></div>
+  <div class="goal-selector">
+    <button class="goal-btn ${s.goalType==='lose'?'active':''}"     onclick="saveBodyField('goalType','lose');refreshBodyStats()">⬇ Perder</button>
+    <button class="goal-btn ${s.goalType==='maintain'?'active':''}" onclick="saveBodyField('goalType','maintain');refreshBodyStats()">= Manter</button>
+    <button class="goal-btn ${s.goalType==='gain'?'active':''}"     onclick="saveBodyField('goalType','gain');refreshBodyStats()">⬆ Ganhar</button>
+  </div>
+
+  <!-- Painel de resultados -->
+  <div id="body-stats-panel" style="margin-top:6px"></div>
+
+  <!-- ══════════════════════════════════
+       CONFIGURAÇÕES
+  ══════════════════════════════════ -->
+  <div class="sec-head" style="padding-top:4px"><span class="sec-title">Configurações</span></div>
   <div class="card">
 
-    <!-- Nome -->
     <div class="settings-row" style="flex-direction:column;align-items:flex-start;gap:8px">
       <div>
         <div class="settings-lbl">Seu Nome</div>
@@ -1679,7 +2012,6 @@ function renderProfile() {
         style="margin:0" onblur="saveCfgName(this.value)">
     </div>
 
-    <!-- Tempo de descanso -->
     <div class="settings-row">
       <div>
         <div class="settings-lbl">Descanso padrão</div>
@@ -1692,7 +2024,6 @@ function renderProfile() {
       </div>
     </div>
 
-    <!-- Incremento de progressão -->
     <div class="settings-row">
       <div>
         <div class="settings-lbl">Incremento de carga</div>
@@ -1705,7 +2036,6 @@ function renderProfile() {
       </div>
     </div>
 
-    <!-- Notificação -->
     <div class="settings-row">
       <div>
         <div class="settings-lbl">Lembrete de treino</div>
@@ -1717,7 +2047,6 @@ function renderProfile() {
       </label>
     </div>
 
-    <!-- Horário -->
     <div class="settings-row">
       <div>
         <div class="settings-lbl">Horário do lembrete</div>
@@ -1730,29 +2059,20 @@ function renderProfile() {
     </div>
   </div>
 
-  <!-- Export / Import / Backup -->
+  <!-- Backup -->
   <div class="sec-head"><span class="sec-title">Dados & Backup</span></div>
   <div class="card">
     <div class="data-action" onclick="exportData()">
       <div class="da-icon">📤</div>
-      <div>
-        <div class="da-title">Exportar Dados</div>
-        <div class="da-sub">Baixar arquivo JSON com todos os treinos</div>
-      </div>
+      <div><div class="da-title">Exportar Dados</div><div class="da-sub">Baixar arquivo JSON com todos os treinos</div></div>
     </div>
     <div class="data-action" onclick="document.getElementById('import-file-input').click()">
       <div class="da-icon">📥</div>
-      <div>
-        <div class="da-title">Importar Dados</div>
-        <div class="da-sub">Restaurar backup de outro dispositivo</div>
-      </div>
+      <div><div class="da-title">Importar Dados</div><div class="da-sub">Restaurar backup de outro dispositivo</div></div>
     </div>
     <div class="data-action" onclick="showInstallTip()">
       <div class="da-icon">📱</div>
-      <div>
-        <div class="da-title">Instalar como App</div>
-        <div class="da-sub">Adicionar à tela inicial do celular</div>
-      </div>
+      <div><div class="da-title">Instalar como App</div><div class="da-sub">Adicionar à tela inicial do celular</div></div>
     </div>
   </div>
 
@@ -1763,6 +2083,9 @@ function renderProfile() {
     <button class="btn btn-danger btn-sm" onclick="resetAllData()">🗑 Apagar todos os dados</button>
   </div>
   <div style="height:16px"></div>`;
+
+  // Renderiza o painel de estatísticas corporais
+  refreshBodyStats();
 }
 
 /* ── Config helpers ── */
@@ -1771,6 +2094,237 @@ function saveCfgName(val) {
   s.userName = val.trim();
   saveSettings(s);
   toast('Nome salvo!');
+}
+
+/* Salva campo corporal e persiste */
+function saveBodyField(field, val) {
+  const s = loadSettings();
+  s[field] = val;
+  saveSettings(s);
+  // Atualiza botões de sexo e objetivo visualmente
+  if (field === 'sex') {
+    document.querySelectorAll('.sex-btn').forEach(b =>
+      b.classList.toggle('active', b.textContent.includes(val === 'M' ? '♂' : '♀'))
+    );
+  }
+  if (field === 'goalType') {
+    document.querySelectorAll('.goal-btn').forEach(b =>
+      b.classList.toggle('active', b.textContent.toLowerCase().includes(
+        val === 'lose' ? 'perder' : val === 'gain' ? 'ganhar' : 'manter'
+      ))
+    );
+  }
+}
+
+/* ── Cálculos corporais ── */
+function calcBodyStats(s) {
+  const w  = s.weight;  // kg
+  const h  = s.height;  // cm
+  const a  = s.age;     // anos
+  const sx = s.sex;     // 'M' | 'F'
+
+  if (!w || !h || w < 30 || h < 100) return null;
+
+  const hm = h / 100;  // metros
+
+  // IMC
+  const imc = w / (hm * hm);
+
+  // Classificação IMC
+  let imcClass, imcColor;
+  if      (imc < 17)    { imcClass = 'Magreza grave';     imcColor = '#4DFFA0'; }
+  else if (imc < 18.5)  { imcClass = 'Abaixo do peso';    imcColor = '#4DFFA0'; }
+  else if (imc < 25)    { imcClass = 'Peso normal ✓';     imcColor = '#C8F500'; }
+  else if (imc < 30)    { imcClass = 'Sobrepeso';          imcColor = '#FFB347'; }
+  else if (imc < 35)    { imcClass = 'Obesidade Grau I';   imcColor = '#FF7A00'; }
+  else if (imc < 40)    { imcClass = 'Obesidade Grau II';  imcColor = '#FF4D4D'; }
+  else                   { imcClass = 'Obesidade Grau III'; imcColor = '#FF4D4D'; }
+
+  // Peso ideal: faixa onde IMC = 18.5 a 24.9
+  const pesoIdealMin = +(18.5 * hm * hm).toFixed(1);
+  const pesoIdealMax = +(24.9 * hm * hm).toFixed(1);
+  const pesoIdealMid = +((pesoIdealMin + pesoIdealMax) / 2).toFixed(1);
+
+  // Diferença para o peso ideal MÁXIMO (IMC 24.9)
+  const diff = +(w - pesoIdealMax).toFixed(1);
+
+  // TMB — Mifflin-St Jeor
+  let tmb;
+  if (a && a > 0) {
+    if (sx === 'M') tmb = Math.round(10*w + 6.25*h - 5*a + 5);
+    else            tmb = Math.round(10*w + 6.25*h - 5*a - 161);
+  } else {
+    // sem idade: usa fórmula simplificada
+    tmb = Math.round(sx === 'M' ? 10*w + 6.25*h - 200 : 10*w + 6.25*h - 361);
+  }
+
+  // TDEE estimativas por nível de atividade
+  const tdeeLight    = Math.round(tmb * 1.375);
+  const tdeeModerate = Math.round(tmb * 1.55);
+  const tdeeActive   = Math.round(tmb * 1.725);
+
+  // Posição na régua do IMC (0–100%)
+  // IMC de 15 a 45 → 100%
+  const imcPct = Math.min(100, Math.max(0, ((imc - 15) / 30) * 100));
+
+  // Metas por objetivo
+  const goal = s.goalType || 'lose';
+  let realWeek, realMonth, aggrWeek, aggrMonth, goalLabel, goalDir;
+
+  if (goal === 'lose') {
+    realWeek  = -0.5; realMonth  = -2.0;
+    aggrWeek  = -1.0; aggrMonth  = -4.0;
+    goalLabel = 'Perder peso'; goalDir = '↓';
+  } else if (goal === 'gain') {
+    realWeek  = +0.25; realMonth  = +1.0;
+    aggrWeek  = +0.5;  aggrMonth  = +2.0;
+    goalLabel = 'Ganhar massa'; goalDir = '↑';
+  } else {
+    realWeek  = 0; realMonth  = 0;
+    aggrWeek  = 0; aggrMonth  = 0;
+    goalLabel = 'Manter peso'; goalDir = '=';
+  }
+
+  // Estimativa de quando chega ao peso ideal
+  const toIdeal = Math.abs(diff);
+  const weeksReal = realWeek !== 0 ? Math.ceil(toIdeal / Math.abs(realWeek)) : null;
+  const weeksAggr = aggrWeek !== 0 ? Math.ceil(toIdeal / Math.abs(aggrWeek)) : null;
+
+  return {
+    imc, imcClass, imcColor, imcPct,
+    pesoIdealMin, pesoIdealMax,
+    diff, tmb, tdeeLight, tdeeModerate, tdeeActive,
+    goal, goalLabel, goalDir,
+    realWeek, realMonth, aggrWeek, aggrMonth,
+    weeksReal, weeksAggr,
+  };
+}
+
+/* Renderiza o painel de estatísticas no perfil */
+function refreshBodyStats() {
+  const panel = document.getElementById('body-stats-panel');
+  if (!panel) return;
+
+  const s    = loadSettings();
+  const stat = calcBodyStats(s);
+
+  if (!stat) {
+    panel.innerHTML = `
+    <div style="margin:10px 14px 6px;padding:14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;color:var(--text-muted);font-size:13px;line-height:1.6">
+      Preencha Peso e Altura para ver<br>seu IMC, peso ideal e metas.
+    </div>`;
+    return;
+  }
+
+  const fmt1 = n => n.toFixed(1);
+  const fmtDiff = n => (n > 0 ? '+' : '') + fmt1(n) + 'kg';
+  const fmtWeeks = w => w === null ? '—' : w <= 4 ? `${w} sem` : `${Math.ceil(w/4.3)} meses`;
+
+  const isMaintain = stat.goal === 'maintain';
+
+  panel.innerHTML = `
+
+  <!-- IMC Gauge -->
+  <div class="sec-head" style="padding-top:16px"><span class="sec-title">IMC — Índice de Massa Corporal</span></div>
+  <div class="imc-gauge-wrap">
+    <div class="imc-gauge-bar">
+      <div class="imc-gauge-needle" style="left:${stat.imcPct}%"></div>
+    </div>
+    <div class="imc-gauge-labels">
+      <span>15</span><span>18.5</span><span>25</span><span>30</span><span>35</span><span>45+</span>
+    </div>
+  </div>
+
+  <!-- Cards: IMC + Peso Ideal -->
+  <div class="body-stats-grid" style="padding-top:10px">
+    <div class="bstat-card highlight">
+      <div class="bstat-label">Seu IMC</div>
+      <div class="bstat-val" style="color:${stat.imcColor}">${fmt1(stat.imc)}</div>
+      <div class="bstat-sub" style="color:${stat.imcColor}">${stat.imcClass}</div>
+    </div>
+    <div class="bstat-card">
+      <div class="bstat-label">Peso Ideal</div>
+      <div class="bstat-val" style="font-size:18px;letter-spacing:-0.5px">${stat.pesoIdealMin}–${stat.pesoIdealMax}</div>
+      <div class="bstat-sub">kg · IMC 18.5–24.9</div>
+    </div>
+    <div class="bstat-card">
+      <div class="bstat-label">Peso Atual</div>
+      <div class="bstat-val">${fmt1(s.weight)}<span style="font-size:14px;color:var(--text-sec)">kg</span></div>
+      <div class="bstat-sub" style="color:${stat.diff > 0 ? '#FFB347' : stat.diff < 0 ? '#4DFFA0' : 'var(--success)'}">
+        ${stat.diff === 0 ? 'No peso ideal ✓' : stat.diff > 0 ? fmtDiff(stat.diff) + ' acima' : fmtDiff(stat.diff) + ' abaixo'}
+      </div>
+    </div>
+    <div class="bstat-card">
+      <div class="bstat-label">Peso Alvo</div>
+      <div class="bstat-val" style="font-size:22px">${fmt1(stat.pesoIdealMax)}<span style="font-size:14px;color:var(--text-sec)">kg</span></div>
+      <div class="bstat-sub">máximo do peso ideal (IMC 24.9)</div>
+    </div>
+  </div>
+
+  <!-- Metas -->
+  ${!isMaintain ? `
+  <div class="sec-head" style="padding-top:14px"><span class="sec-title">${stat.goalDir} Metas — ${stat.goalLabel}</span></div>
+  <div class="goals-table">
+    <div class="goals-row header">
+      <div class="goals-cell">Ritmo</div>
+      <div class="goals-cell">Por semana</div>
+      <div class="goals-cell">Por mês</div>
+    </div>
+    <div class="goals-row">
+      <div class="goals-cell name">✅ Realista</div>
+      <div class="goals-cell accent">${fmtDiff(stat.realWeek)}</div>
+      <div class="goals-cell accent">${fmtDiff(stat.realMonth)}</div>
+    </div>
+    <div class="goals-row">
+      <div class="goals-cell name">🔥 Agressivo</div>
+      <div class="goals-cell danger">${fmtDiff(stat.aggrWeek)}</div>
+      <div class="goals-cell danger">${fmtDiff(stat.aggrMonth)}</div>
+    </div>
+  </div>
+
+  <!-- Tempo estimado -->
+  <div class="body-stats-grid" style="padding-top:9px">
+    <div class="bstat-card">
+      <div class="bstat-label">Ritmo realista</div>
+      <div class="bstat-val" style="font-size:20px">${fmtWeeks(stat.weeksReal)}</div>
+      <div class="bstat-sub">para atingir ${fmt1(stat.pesoIdealMax)}kg</div>
+    </div>
+    <div class="bstat-card">
+      <div class="bstat-label">Ritmo agressivo</div>
+      <div class="bstat-val" style="font-size:20px">${fmtWeeks(stat.weeksAggr)}</div>
+      <div class="bstat-sub">para atingir ${fmt1(stat.pesoIdealMax)}kg</div>
+    </div>
+  </div>` : `
+  <div style="margin:12px 14px 0;padding:13px 14px;background:var(--success-dim);border:1px solid rgba(77,255,160,0.25);border-radius:var(--radius-sm);font-size:13px;color:var(--success);font-weight:700;text-align:center">
+    ✓ Objetivo: manter o peso atual. Continue treinando!
+  </div>`}
+
+  <!-- TMB / Calorias -->
+  ${s.age ? `
+  <div class="sec-head" style="padding-top:14px"><span class="sec-title">🔥 Gasto Calórico Estimado</span></div>
+  <div class="tmb-card">
+    <div class="tmb-row">
+      <span class="tmb-lbl">TMB (repouso total)</span>
+      <span class="tmb-val">${stat.tmb} kcal</span>
+    </div>
+    <div class="tmb-row">
+      <span class="tmb-lbl">Levemente ativo (1–2×/sem)</span>
+      <span class="tmb-val">${stat.tdeeLight} kcal</span>
+    </div>
+    <div class="tmb-row">
+      <span class="tmb-lbl">Moderado (3–5×/sem) 💪</span>
+      <span class="tmb-val" style="color:var(--accent)">${stat.tdeeModerate} kcal</span>
+    </div>
+    <div class="tmb-row">
+      <span class="tmb-lbl">Muito ativo (6–7×/sem)</span>
+      <span class="tmb-val">${stat.tdeeActive} kcal</span>
+    </div>
+  </div>
+  <div style="margin:8px 14px 0;font-size:10px;color:var(--text-muted);line-height:1.5">
+    Fórmula Mifflin-St Jeor · Valores são estimativas. Para perder peso: consumir 300–500 kcal abaixo do TDEE. Para ganhar: 200–300 kcal acima.
+  </div>` : ''}
+
+  <div style="height:10px"></div>`;
 }
 
 function changeSetting(key, delta) {
@@ -2145,8 +2699,113 @@ function syncExerciseOrder() {
 }
 
 /* ================================================================
-   15. MODAL
+   SUBSTITUIÇÃO DE EXERCÍCIO
 ================================================================ */
+
+/* Ícones por equipamento */
+const EQUIP_ICON = {
+  'Máquina':'🦾', 'Cabo':'🔗', 'Halter':'🏋️', 'Barra':'⚡',
+  'Banco':'🪑', 'Livre':'🤸',
+};
+
+function openSubstitutePicker(ei) {
+  const wo  = state.activeWorkout;
+  const ex  = wo.exercises[ei];
+  const grp = getExMuscleGroup(ex);
+  const subs = grp ? SUBSTITUTES_DB[grp] || [] : [];
+
+  // Filtra o próprio exercício da lista
+  const options = subs.filter(s =>
+    s.name.toLowerCase() !== ex.name.toLowerCase()
+  );
+
+  const grpLabel = grp ? MUSCLE_GROUPS[grp] : null;
+
+  let body = `
+  <div class="sub-current">
+    <div class="sub-current-lbl">Exercício atual</div>
+    <div class="sub-current-name">${ex.name}</div>
+  </div>`;
+
+  if (grpLabel) {
+    body += `<div class="sub-group-label">💪 Alternativas — ${grpLabel}</div>`;
+  }
+
+  if (!options.length) {
+    body += `<div class="sub-none">
+      Nenhuma alternativa cadastrada para este exercício.<br>
+      Você pode editar o plano e criar suas próprias alternativas.
+    </div>`;
+  } else {
+    body += `<div class="sub-list">`;
+    options.forEach((sub, i) => {
+      // Carga sugerida: aplica loadFactor sobre a carga atual (média das séries)
+      const currentLoad = ex.sets[0]?.load || ex.suggestedLoad;
+      const sugLoad = sub.loadFactor !== null
+        ? Math.max(2.5, Math.round((currentLoad * sub.loadFactor) / 2.5) * 2.5)
+        : null;
+      const icon = EQUIP_ICON[sub.equipment] || '🏋️';
+
+      body += `
+      <div class="sub-item" onclick="applySubstitute(${ei}, ${i}, '${grp}')">
+        <div class="sub-item-icon">${icon}</div>
+        <div style="flex:1;min-width:0">
+          <div class="sub-item-name">${sub.name}</div>
+          <div class="sub-item-meta">
+            <span class="sub-equip-badge">${sub.equipment}</span>
+          </div>
+          <div class="sub-item-tip">${sub.tip}</div>
+          ${sugLoad !== null
+            ? `<div class="sub-item-load">🎯 Carga sugerida: ${sugLoad}kg</div>`
+            : `<div class="sub-item-load" style="background:var(--surface2);border-color:var(--border);color:var(--text-sec)">🎯 Peso corporal / ajustar</div>`
+          }
+        </div>
+      </div>`;
+    });
+    body += `</div>`;
+  }
+
+  body += `<div style="margin-top:18px">
+    <p style="font-size:11px;color:var(--text-muted);text-align:center;line-height:1.6">
+      A substituição vale só para este treino.<br>O plano original não é alterado.
+    </p>
+  </div>`;
+
+  openModal('⇄ Trocar Exercício', body);
+
+  // Guarda o índice atual para usar no applySubstitute
+  window._subPickerEi = ei;
+}
+
+function applySubstitute(ei, subIndex, grp) {
+  const wo       = state.activeWorkout;
+  const ex       = wo.exercises[ei];
+  const subs     = SUBSTITUTES_DB[grp] || [];
+
+  // Filtra igual ao picker
+  const currentName = ex.name.toLowerCase();
+  const options  = subs.filter(s => s.name.toLowerCase() !== currentName);
+  const sub      = options[subIndex];
+  if (!sub) return;
+
+  const currentLoad = ex.sets[0]?.load || ex.suggestedLoad;
+  const newLoad = sub.loadFactor !== null
+    ? Math.max(2.5, Math.round((currentLoad * sub.loadFactor) / 2.5) * 2.5)
+    : currentLoad;
+
+  // Salva nome original (para mostrar no card e no histórico)
+  if (!ex.originalName) ex.originalName = ex.name;
+  ex.substituted   = true;
+  ex.name          = sub.name;
+  ex.suggestedLoad = newLoad;
+
+  // Reseta as séries com a nova carga (mantém séries e reps alvo)
+  ex.sets = ex.sets.map(() => ({ reps:null, load:newLoad, done:false }));
+
+  closeModal();
+  renderActiveWorkout();
+  toast(`✅ Trocado para: ${sub.name}`);
+}
 function openModal(title, body) {
   document.getElementById('modal-title').innerHTML = title;
   document.getElementById('modal-body').innerHTML  = body;
