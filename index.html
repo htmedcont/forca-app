@@ -134,8 +134,8 @@
     background: var(--accent);
     border-radius: 2px 2px 0 0;
   }
-  .nav-icon  { font-size: 20px; line-height: 1; }
-  .nav-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+  .nav-icon  { font-size: 19px; line-height: 1; }
+  .nav-label { font-size: 7.5px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
 
   /* ── VIEWS ── */
   .view { display: none; }
@@ -526,6 +526,147 @@
   .htab { flex:1; padding:10px; text-align:center; font-size:11px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); cursor:pointer; border:none; background:none; transition:var(--transition); }
   .htab.active { background:var(--accent-dim); color:var(--accent); }
 
+  /* ── WEIGHT GAME ── */
+
+  /* Hero input */
+  .wg-hero {
+    margin: 14px 14px 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .wg-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(200,245,0,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .wg-today-lbl { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sec); margin-bottom: 12px; }
+  .wg-input-row { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 16px; }
+  .wg-big-input {
+    background: transparent;
+    border: none; outline: none;
+    font-size: 72px; font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -4px;
+    width: 180px; text-align: right;
+    font-family: inherit;
+    -moz-appearance: textfield;
+    line-height: 1;
+  }
+  .wg-big-input::-webkit-outer-spin-button,
+  .wg-big-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .wg-big-input::placeholder { color: var(--surface3); }
+  .wg-unit { font-size: 22px; font-weight: 800; color: var(--text-sec); align-self: flex-end; padding-bottom: 10px; margin-left: 4px; }
+  .wg-last-info { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; min-height: 18px; }
+  .wg-diff-pos { color: var(--danger); font-weight: 800; }
+  .wg-diff-neg { color: var(--success); font-weight: 800; }
+  .wg-diff-zero{ color: var(--text-sec); font-weight: 800; }
+
+  /* Progress journey */
+  .wg-journey {
+    margin: 12px 14px 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .wg-journey-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .wg-journey-title  { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: var(--text-sec); }
+  .wg-pct-badge { font-size: 16px; font-weight: 900; color: var(--accent); }
+
+  /* Journey bar */
+  .wg-bar-wrap { position: relative; margin-bottom: 8px; }
+  .wg-bar-bg   { height: 12px; background: var(--surface3); border-radius: 6px; overflow: hidden; }
+  .wg-bar-fill { height: 100%; border-radius: 6px; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); position: relative; }
+  .wg-bar-fill.losing { background: linear-gradient(90deg, #4DFFA0, #C8F500); }
+  .wg-bar-fill.gaining{ background: linear-gradient(90deg, #C8F500, #FFB347); }
+  .wg-bar-fill.done   { background: linear-gradient(90deg, #4DFFA0, #4DFFA0); }
+  .wg-bar-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); font-weight: 700; margin-top: 5px; }
+
+  /* Avatar emoji that moves */
+  .wg-avatar-track { position: relative; height: 28px; margin-bottom: 4px; }
+  .wg-avatar {
+    position: absolute;
+    top: 0;
+    font-size: 22px;
+    line-height: 1;
+    transition: left 0.8s cubic-bezier(0.34,1.56,0.64,1);
+    transform: translateX(-50%);
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  }
+  .wg-flag { position: absolute; right: 0; top: 0; font-size: 22px; line-height: 1; }
+
+  /* Stats mini row */
+  .wg-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 2px; }
+  .wg-stat  { text-align: center; }
+  .wg-stat-val { font-size: 18px; font-weight: 900; color: var(--text); letter-spacing: -0.5px; }
+  .wg-stat-lbl { font-size: 9px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+  /* Milestone */
+  .wg-milestone {
+    margin: 10px 0 0;
+    padding: 10px 13px;
+    background: var(--warning-dim);
+    border: 1px solid rgba(255,179,71,0.3);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--warning);
+    font-weight: 700;
+    text-align: center;
+  }
+  .wg-milestone.done {
+    background: var(--success-dim);
+    border-color: rgba(77,255,160,0.3);
+    color: var(--success);
+  }
+
+  /* Setup card */
+  .wg-setup {
+    margin: 12px 14px 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .wg-setup-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .wg-setup-row:last-child { border-bottom: none; }
+  .wg-setup-lbl { font-size: 14px; font-weight: 700; }
+  .wg-setup-sub { font-size: 11px; color: var(--text-sec); margin-top: 2px; }
+  .wg-setup-val { font-size: 20px; font-weight: 900; color: var(--accent); min-width: 70px; text-align: right; }
+
+  /* History log */
+  .wg-log-item { display: flex; align-items: center; padding: 11px 16px; border-bottom: 1px solid var(--border); gap: 10px; }
+  .wg-log-item:last-child { border-bottom: none; }
+  .wg-log-date  { font-size: 11px; color: var(--text-sec); font-weight: 600; flex: 1; }
+  .wg-log-w     { font-size: 17px; font-weight: 900; color: var(--text); min-width: 60px; text-align: right; }
+  .wg-log-diff  { font-size: 11px; font-weight: 800; min-width: 46px; text-align: right; }
+  .wg-log-del   { background: none; border: none; color: var(--text-muted); font-size: 16px; cursor: pointer; padding: 4px; flex-shrink: 0; }
+  .wg-log-del:active { color: var(--danger); }
+
+  /* Celebration overlay */
+  .wg-celebrate {
+    position: fixed; inset: 0; z-index: 900;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.88);
+    animation: fadeOverlay 0.3s ease;
+  }
+  .wg-cel-icon  { font-size: 80px; margin-bottom: 16px; animation: celBounce 0.6s ease; }
+  .wg-cel-title { font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px; text-align: center; }
+  .wg-cel-sub   { font-size: 16px; color: var(--text-sec); margin-bottom: 28px; text-align: center; padding: 0 28px; }
+  @keyframes celBounce { 0%{transform:scale(0.3);opacity:0} 70%{transform:scale(1.15)} 100%{transform:scale(1);opacity:1} }
+
+  /* Chart */
+  .wg-chart-wrap { margin: 12px 14px 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 14px 10px; }
+  .wg-chart-title { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: var(--text-sec); margin-bottom: 12px; }
+
   /* Tablet border */
   @media (min-width:481px) {
     #app { border-left:1px solid var(--border); border-right:1px solid var(--border); }
@@ -672,6 +813,7 @@
     <div id="view-history"   class="view"></div>
     <div id="view-plans"     class="view"></div>
     <div id="view-profile"   class="view"></div>
+    <div id="view-weight"    class="view"></div>
   </main>
 
   <nav id="bottom-nav">
@@ -680,6 +822,9 @@
     </button>
     <button class="nav-btn" data-view="workout" onclick="navigate('workout')">
       <span class="nav-icon">💪</span><span class="nav-label">Treino</span>
+    </button>
+    <button class="nav-btn" data-view="weight" onclick="navigate('weight')">
+      <span class="nav-icon">⚖️</span><span class="nav-label">Peso</span>
     </button>
     <button class="nav-btn" data-view="history" onclick="navigate('history')">
       <span class="nav-icon">📋</span><span class="nav-label">Histórico</span>
@@ -906,6 +1051,7 @@ const KEY = {
   WEEK_DONE:'forca_week_done',
   SETTINGS: 'forca_settings',
   PRS:      'forca_prs',
+  WEIGHT:   'forca_weight',   // { goal, startWeight, entries:[{date,weight}] }
 };
 
 function weekKey(date) {
@@ -967,6 +1113,7 @@ function navigate(view) {
   if (view === 'history')   renderHistory();
   if (view === 'plans')     renderPlans();
   if (view === 'profile')   renderProfile();
+  if (view === 'weight')    renderWeight();
 }
 
 /* ================================================================
@@ -2468,8 +2615,494 @@ function showInstallTip() {
 }
 
 /* ================================================================
-   14. PLAN EDITOR
+   WEIGHT GAME — Acompanhamento de peso gamificado
 ================================================================ */
+
+/* ── Storage helpers ── */
+function loadWeight() {
+  return JSON.parse(localStorage.getItem(KEY.WEIGHT) || 'null') || {
+    goal:        null,
+    startWeight: null,
+    entries:     [],   // [{ date:'2024-01-15', weight:85.2 }]
+  };
+}
+function saveWeight(d) { localStorage.setItem(KEY.WEIGHT, JSON.stringify(d)); }
+
+/* Data de hoje no formato YYYY-MM-DD */
+function todayStr() { return new Date().toISOString().split('T')[0]; }
+
+/* Entrada de hoje (se existir) */
+function todayEntry(data) { return data.entries.find(e => e.date === todayStr()) || null; }
+
+/* Entrada mais recente (excluindo hoje se quiser) */
+function lastEntry(data, excludeToday = false) {
+  const entries = excludeToday
+    ? data.entries.filter(e => e.date !== todayStr())
+    : data.entries;
+  if (!entries.length) return null;
+  return [...entries].sort((a,b) => b.date.localeCompare(a.date))[0];
+}
+
+/* Streak: dias consecutivos com registro */
+function weightStreak(data) {
+  if (!data.entries.length) return 0;
+  const dates = new Set(data.entries.map(e => e.date));
+  let streak = 0;
+  const d = new Date();
+  // Se não pesou hoje, começa de ontem
+  if (!dates.has(todayStr())) d.setDate(d.getDate() - 1);
+  while (dates.has(d.toISOString().split('T')[0])) {
+    streak++;
+    d.setDate(d.getDate() - 1);
+  }
+  return streak;
+}
+
+/* Próximo marco de perda/ganho (a cada 1kg completo) */
+function nextMilestone(data) {
+  if (!data.startWeight || !data.goal || !data.entries.length) return null;
+  const curr    = lastEntry(data)?.weight;
+  if (!curr) return null;
+  const losing  = data.goal < data.startWeight;
+  const totalDiff = Math.abs(data.startWeight - data.goal);
+  const doneDiff  = losing
+    ? Math.max(0, data.startWeight - curr)
+    : Math.max(0, curr - data.startWeight);
+
+  const nextKg = Math.floor(doneDiff) + 1;
+  if (nextKg > totalDiff) return null;
+  const remaining = nextKg - doneDiff;
+  return { nextKg, remaining: +remaining.toFixed(1), losing };
+}
+
+/* ── Renderização principal ── */
+function renderWeight() {
+  const el   = document.getElementById('view-weight');
+  const data = loadWeight();
+  const te   = todayEntry(data);
+  const le   = lastEntry(data, true); // último (sem hoje)
+  const streak = weightStreak(data);
+
+  // Calcula diff de hoje vs ontem
+  let diffHtml = '';
+  if (te && le) {
+    const d = +(te.weight - le.weight).toFixed(1);
+    if      (d > 0) diffHtml = `<span class="wg-diff-pos">▲ +${d}kg desde ontem</span>`;
+    else if (d < 0) diffHtml = `<span class="wg-diff-neg">▼ ${d}kg desde ontem</span>`;
+    else             diffHtml = `<span class="wg-diff-zero">= igual a ontem</span>`;
+  } else if (le) {
+    diffHtml = `<span style="color:var(--text-muted)">Último: ${le.weight}kg em ${fmtDate(le.date+'T00:00:00')}</span>`;
+  } else {
+    diffHtml = `<span style="color:var(--text-muted)">Primeiro registro</span>`;
+  }
+
+  const todayVal = te ? te.weight : '';
+  const hasGoal  = data.goal !== null && data.startWeight !== null;
+
+  let html = `
+
+  <!-- ── INPUT DIÁRIO ── -->
+  <div class="wg-hero">
+    <div class="wg-today-lbl">⚖️ Peso de Hoje</div>
+    <div class="wg-input-row">
+      <input class="wg-big-input" type="number" id="wg-input"
+        inputmode="decimal" min="30" max="300" step="0.1"
+        placeholder="00.0"
+        value="${todayVal}"
+        onkeydown="if(event.key==='Enter'){logWeight();this.blur()}"
+        oninput="wgInputChanged(this.value)">
+      <span class="wg-unit">kg</span>
+    </div>
+    <div class="wg-last-info" id="wg-diff">${diffHtml}</div>
+    <button class="btn btn-primary" id="wg-log-btn"
+      style="font-size:15px;letter-spacing:0.5px"
+      onclick="logWeight()">
+      ${te ? '✏️ Atualizar Peso' : '✓ Registrar Peso'}
+    </button>
+  </div>`;
+
+  /* ── JORNADA ── */
+  if (hasGoal) {
+    html += buildJourneyCard(data, te, streak);
+  } else {
+    html += `
+    <div style="margin:12px 14px 0;padding:16px;background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);text-align:center">
+      <div style="font-size:24px;margin-bottom:8px">🎯</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Defina sua meta de peso</div>
+      <div style="font-size:13px;color:var(--text-sec);margin-bottom:16px;line-height:1.5">Configure um peso inicial e uma meta para acompanhar sua evolução.</div>
+      <button class="btn btn-primary btn-sm" onclick="openWeightSetup()">Configurar Meta</button>
+    </div>`;
+  }
+
+  /* ── GRÁFICO ── */
+  if (data.entries.length >= 2) {
+    html += buildWeightChart(data);
+  }
+
+  /* ── CONFIGURAÇÃO (resumo) ── */
+  html += `
+  <div class="sec-head" style="padding-top:16px">
+    <span class="sec-title">Configuração</span>
+    <button class="sec-link" onclick="openWeightSetup()">Editar</button>
+  </div>
+  <div class="wg-setup">
+    <div class="wg-setup-row">
+      <div><div class="wg-setup-lbl">Peso inicial</div><div class="wg-setup-sub">Ponto de partida</div></div>
+      <div class="wg-setup-val">${data.startWeight ? data.startWeight+'kg' : '—'}</div>
+    </div>
+    <div class="wg-setup-row">
+      <div><div class="wg-setup-lbl">Meta de peso</div><div class="wg-setup-sub">Definida por você</div></div>
+      <div class="wg-setup-val">${data.goal ? data.goal+'kg' : '—'}</div>
+    </div>
+  </div>`;
+
+  /* ── HISTÓRICO ── */
+  if (data.entries.length > 0) {
+    html += `
+    <div class="sec-head" style="padding-top:16px">
+      <span class="sec-title">Histórico</span>
+    </div>
+    <div class="card">`;
+
+    const sorted = [...data.entries].sort((a,b) => b.date.localeCompare(a.date));
+    sorted.forEach((entry, i) => {
+      const prev = sorted[i+1];
+      let diffStr = '', diffCls = '';
+      if (prev) {
+        const d = +(entry.weight - prev.weight).toFixed(1);
+        if      (d > 0) { diffStr = `+${d}kg`; diffCls = 'wg-diff-pos'; }
+        else if (d < 0) { diffStr = `${d}kg`;  diffCls = 'wg-diff-neg'; }
+        else             { diffStr = `=`;       diffCls = ''; }
+      }
+      const isToday = entry.date === todayStr();
+      html += `
+      <div class="wg-log-item">
+        <div class="wg-log-date">
+          ${isToday ? '<span class="pulse"></span>' : ''}${fmtDateLong(entry.date+'T12:00:00')}
+        </div>
+        <div class="wg-log-w">${entry.weight}<span style="font-size:11px;color:var(--text-muted)">kg</span></div>
+        <div class="wg-log-diff ${diffCls}">${diffStr}</div>
+        <button class="wg-log-del" onclick="deleteWeightEntry('${entry.date}')" title="Apagar">✕</button>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `<div style="height:16px"></div>`;
+  el.innerHTML = html;
+}
+
+/* ── Cartão de jornada ── */
+function buildJourneyCard(data, te, streak) {
+  const curr  = (te || lastEntry(data))?.weight;
+  if (!curr) return '';
+
+  const start  = data.startWeight;
+  const goal   = data.goal;
+  const losing = goal < start;
+  const total  = Math.abs(start - goal);
+  const done   = losing
+    ? Math.max(0, Math.min(total, start - curr))
+    : Math.max(0, Math.min(total, curr - start));
+  const pct    = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 0;
+  const left   = +(Math.abs(goal - curr)).toFixed(1);
+  const reached= losing ? curr <= goal : curr >= goal;
+
+  const fillCls = reached ? 'done' : losing ? 'losing' : 'gaining';
+  const avatarPct = Math.min(94, Math.max(2, pct * 0.94));
+
+  // Qual emoji usar
+  const avatarEmoji = pct >= 100 ? '🏆' : pct >= 75 ? '🔥' : pct >= 50 ? '😤' : pct >= 25 ? '💪' : '🏃';
+
+  // Marco
+  const ms = nextMilestone(data);
+
+  return `
+  <div class="wg-journey">
+    <div class="wg-journey-header">
+      <span class="wg-journey-title">${losing ? '📉 Jornada de emagrecimento' : '📈 Jornada de ganho de massa'}</span>
+      <span class="wg-pct-badge">${pct}%</span>
+    </div>
+
+    <!-- Avatar animado -->
+    <div class="wg-avatar-track">
+      <div class="wg-avatar" style="left:${avatarPct}%">${avatarEmoji}</div>
+      <div class="wg-flag">🏁</div>
+    </div>
+
+    <!-- Barra de progresso -->
+    <div class="wg-bar-wrap">
+      <div class="wg-bar-bg">
+        <div class="wg-bar-fill ${fillCls}" style="width:${pct}%"></div>
+      </div>
+      <div class="wg-bar-labels">
+        <span>${start}kg</span>
+        <span>${goal}kg ⛳</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="wg-stats" style="margin-top:14px">
+      <div class="wg-stat">
+        <div class="wg-stat-val" style="color:var(--accent)">${curr}kg</div>
+        <div class="wg-stat-lbl">Hoje</div>
+      </div>
+      <div class="wg-stat">
+        <div class="wg-stat-val" style="color:${reached ? 'var(--success)' : 'var(--text)'}">${reached ? '✓' : left+'kg'}</div>
+        <div class="wg-stat-lbl">${reached ? 'Meta!' : 'Faltam'}</div>
+      </div>
+      <div class="wg-stat">
+        <div class="wg-stat-val" style="color:${streak>=7?'var(--warning)':streak>=3?'var(--accent)':'var(--text)'}">${streak}${streak>=3?'🔥':''}</div>
+        <div class="wg-stat-lbl">Dias seguidos</div>
+      </div>
+    </div>
+
+    ${reached
+      ? `<div class="wg-milestone done">🏆 META ATINGIDA! Parabéns, você chegou lá!</div>`
+      : ms ? `<div class="wg-milestone">🎯 Próximo marco: −${ms.nextKg}kg total · faltam ${ms.remaining}kg</div>` : ''
+    }
+  </div>`;
+}
+
+/* ── Gráfico de peso ── */
+function buildWeightChart(data) {
+  const sorted = [...data.entries]
+    .sort((a,b) => a.date.localeCompare(b.date))
+    .slice(-30); // últimos 30 dias
+
+  if (sorted.length < 2) return '';
+
+  const points = sorted.map(e => ({
+    label: fmtDate(e.date+'T12:00:00'),
+    weight: e.weight,
+  }));
+
+  const vals = points.map(p => p.weight);
+  const minV = Math.min(...vals) - 0.5;
+  const maxV = Math.max(...vals) + 0.5;
+
+  // Adiciona linha de meta
+  const goalLine = data.goal;
+
+  const W = 320, H = 110;
+  const PAD = { t:14, r:12, b:26, l:44 };
+  const iW = W - PAD.l - PAD.r;
+  const iH = H - PAD.t - PAD.b;
+  const toX = i => PAD.l + (i / (points.length - 1)) * iW;
+  const toY = v => PAD.t + iH - ((v - minV) / (maxV - minV)) * iH;
+
+  const linePts = points.map((p,i) => `${toX(i)},${toY(p.weight)}`).join(' ');
+  const areaD   = `M${toX(0)},${toY(points[0].weight)} `
+    + points.map((p,i) => `L${toX(i)},${toY(p.weight)}`).join(' ')
+    + ` L${toX(points.length-1)},${PAD.t+iH} L${toX(0)},${PAD.t+iH} Z`;
+
+  // Grid Y (3 linhas)
+  let grids = '';
+  for (let i = 0; i <= 2; i++) {
+    const v = minV + ((maxV - minV) / 2) * i;
+    const y = toY(v);
+    grids += `<line x1="${PAD.l}" y1="${y}" x2="${W-PAD.r}" y2="${y}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3"/>`;
+    grids += `<text x="${PAD.l-4}" y="${y+4}" text-anchor="end" font-size="9" fill="var(--text-muted)" font-family="inherit">${v.toFixed(1)}</text>`;
+  }
+
+  // Linha de meta
+  let goalSvg = '';
+  if (goalLine && goalLine >= minV && goalLine <= maxV) {
+    const gy = toY(goalLine);
+    goalSvg = `
+    <line x1="${PAD.l}" y1="${gy}" x2="${W-PAD.r}" y2="${gy}" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.6"/>
+    <text x="${W-PAD.r+2}" y="${gy+4}" font-size="9" fill="var(--accent)" font-family="inherit" font-weight="700">⛳</text>`;
+  }
+
+  // Dots
+  let dots = '';
+  points.forEach((p, i) => {
+    const x = toX(i), y = toY(p.weight);
+    const isFirst = i === 0, isLast = i === points.length-1;
+    const isMin = p.weight === Math.min(...vals), isMax = p.weight === Math.max(...vals);
+    if (isFirst || isLast || isMin || isMax) {
+      dots += `<circle cx="${x}" cy="${y}" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>`;
+      const anchor = i === 0 ? 'start' : i === points.length-1 ? 'end' : 'middle';
+      dots += `<text x="${x}" y="${y-8}" text-anchor="${anchor}" font-size="9" fill="var(--accent)" font-weight="700" font-family="inherit">${p.weight}</text>`;
+    }
+  });
+
+  // X labels
+  const xl = `
+  <text x="${toX(0)}" y="${H-4}" text-anchor="start" font-size="8" fill="var(--text-muted)" font-family="inherit">${points[0].label}</text>
+  <text x="${toX(points.length-1)}" y="${H-4}" text-anchor="end" font-size="8" fill="var(--text-muted)" font-family="inherit">${points[points.length-1].label}</text>`;
+
+  return `
+  <div class="wg-chart-wrap">
+    <div class="wg-chart-title">📉 Últimos ${points.length} registros</div>
+    <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:${H}px;overflow:visible">
+      <defs>
+        <linearGradient id="wgGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.01"/>
+        </linearGradient>
+      </defs>
+      ${grids}
+      ${goalSvg}
+      <path d="${areaD}" fill="url(#wgGrad)"/>
+      <polyline points="${linePts}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${dots}
+      ${xl}
+    </svg>
+  </div>`;
+}
+
+/* ── Registrar peso ── */
+function logWeight() {
+  const input = document.getElementById('wg-input');
+  const val   = parseFloat(input?.value);
+  if (!val || val < 30 || val > 300) { toast('⚠ Peso inválido'); return; }
+
+  const data  = loadWeight();
+  const today = todayStr();
+  const prev  = todayEntry(data);
+
+  // Se não tem peso inicial, usa o primeiro registro
+  if (!data.startWeight) {
+    data.startWeight = val;
+  }
+
+  // Upsert entry de hoje
+  const idx = data.entries.findIndex(e => e.date === today);
+  if (idx >= 0) data.entries[idx].weight = val;
+  else          data.entries.push({ date: today, weight: val });
+
+  saveWeight(data);
+
+  // Checa conquistas
+  checkWeightAchievements(data, val, prev?.weight);
+
+  toast(prev ? '✏️ Peso atualizado!' : '✓ Peso registrado!');
+  renderWeight();
+}
+
+/* Input em tempo real — atualiza diff */
+function wgInputChanged(val) {
+  const data = loadWeight();
+  const le   = lastEntry(data, true);
+  const num  = parseFloat(val);
+  const diff = document.getElementById('wg-diff');
+  if (!diff) return;
+  if (!num || !le) return;
+  const d = +(num - le.weight).toFixed(1);
+  if      (d > 0) diff.innerHTML = `<span class="wg-diff-pos">▲ +${d}kg desde ontem</span>`;
+  else if (d < 0) diff.innerHTML = `<span class="wg-diff-neg">▼ ${d}kg desde ontem</span>`;
+  else             diff.innerHTML = `<span class="wg-diff-zero">= igual ao último registro</span>`;
+}
+
+/* ── Apagar entrada ── */
+function deleteWeightEntry(date) {
+  if (!confirm('Apagar este registro?')) return;
+  const data = loadWeight();
+  data.entries = data.entries.filter(e => e.date !== date);
+  saveWeight(data);
+  renderWeight();
+  toast('Registro apagado');
+}
+
+/* ── Setup modal ── */
+function openWeightSetup() {
+  const data = loadWeight();
+  const body = `
+  <div style="margin-bottom:18px">
+    <p style="font-size:13px;color:var(--text-sec);line-height:1.6;margin-bottom:16px">
+      Defina seu peso de partida e a meta que <strong style="color:var(--text)">você</strong> quer atingir — não precisa ser o ideal do IMC.
+    </p>
+
+    <div class="field-group">
+      <label class="field-label">Peso inicial (kg)</label>
+      <input class="field-input" type="number" id="ws-start"
+        inputmode="decimal" min="30" max="300" step="0.1"
+        value="${data.startWeight ?? ''}" placeholder="Ex: 90.0">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Minha meta (kg)</label>
+      <input class="field-input" type="number" id="ws-goal"
+        inputmode="decimal" min="30" max="300" step="0.1"
+        value="${data.goal ?? ''}" placeholder="Ex: 80.0">
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.5">
+        Pode ser qualquer peso — mais baixo para emagrecer, mais alto para ganhar massa.
+      </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="saveWeightSetup()">Salvar Meta</button>
+  </div>`;
+
+  openModal('🎯 Configurar Meta de Peso', body);
+}
+
+function saveWeightSetup() {
+  const start = parseFloat(document.getElementById('ws-start')?.value);
+  const goal  = parseFloat(document.getElementById('ws-goal')?.value);
+  if (!start || start < 30) { toast('⚠ Peso inicial inválido'); return; }
+  if (!goal  || goal  < 30) { toast('⚠ Meta inválida'); return; }
+  if (start === goal)        { toast('⚠ Meta igual ao peso inicial'); return; }
+
+  const data = loadWeight();
+  data.startWeight = start;
+  data.goal        = goal;
+  saveWeight(data);
+  closeModal();
+  toast('🎯 Meta salva!');
+  renderWeight();
+}
+
+/* ── Conquistas ── */
+function checkWeightAchievements(data, newWeight, prevWeight) {
+  if (!data.goal || !data.startWeight) return;
+
+  const losing  = data.goal < data.startWeight;
+  const total   = Math.abs(data.startWeight - data.goal);
+  const done    = losing
+    ? Math.max(0, data.startWeight - newWeight)
+    : Math.max(0, newWeight - data.startWeight);
+
+  // Meta atingida
+  const reached = losing ? newWeight <= data.goal : newWeight >= data.goal;
+  if (reached) {
+    showWeightCelebration('🏆', 'META ATINGIDA!', `Você chegou em ${newWeight}kg. Incrível!`);
+    return;
+  }
+
+  // Marcos de cada 1kg
+  if (prevWeight !== undefined && prevWeight !== null) {
+    const prevDone = losing
+      ? Math.max(0, data.startWeight - prevWeight)
+      : Math.max(0, prevWeight - data.startWeight);
+    const prevKg = Math.floor(prevDone);
+    const currKg = Math.floor(done);
+    if (currKg > prevKg && currKg > 0) {
+      const emoji = currKg >= 5 ? '🔥' : '⭐';
+      showWeightCelebration(emoji, `${currKg}kg ${losing?'perdidos':'ganhos'}!`, `Continue assim, você está arrasando!`);
+    }
+  }
+
+  // Streak especial
+  const streak = weightStreak(data);
+  if (streak === 7)  showWeightCelebration('🔥', '7 dias seguidos!', 'Uma semana de consistência. Isso é hábito!');
+  if (streak === 30) showWeightCelebration('💎', '30 dias seguidos!', 'Um mês inteiro. Você é imparável!');
+}
+
+function showWeightCelebration(icon, title, sub) {
+  const el  = document.createElement('div');
+  el.className = 'wg-celebrate';
+  el.innerHTML = `
+    <div class="wg-cel-icon">${icon}</div>
+    <div class="wg-cel-title">${title}</div>
+    <div class="wg-cel-sub">${sub}</div>
+    <button class="btn btn-primary" style="width:auto;padding:14px 32px" onclick="this.closest('.wg-celebrate').remove()">
+      Continuar 💪
+    </button>`;
+  document.body.appendChild(el);
+  // Vibração háptica
+  if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 200]);
+}
 const editorState = { planId:null, name:'', dayIndex:-1, dayShort:'', dayFull:'', exercises:[] };
 
 const DAY_INFO = [
