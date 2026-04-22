@@ -526,6 +526,146 @@
   .htab { flex:1; padding:10px; text-align:center; font-size:11px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); cursor:pointer; border:none; background:none; transition:var(--transition); }
   .htab.active { background:var(--accent-dim); color:var(--accent); }
 
+  /* ── CALENDAR ── */
+
+  /* Month nav */
+  .cal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 16px 12px;
+  }
+  .cal-month-title { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+  .cal-month-sub   { font-size: 11px; color: var(--text-sec); font-weight: 600; margin-top: 1px; }
+  .cal-nav-btn {
+    width: 38px; height: 38px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-size: 18px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: var(--transition); flex-shrink: 0;
+  }
+  .cal-nav-btn:active { background: var(--accent-dim); border-color: var(--border-accent); color: var(--accent); }
+  .cal-nav-btn:disabled { opacity: 0.25; cursor: default; }
+
+  /* Day-of-week header */
+  .cal-dow {
+    display: grid; grid-template-columns: repeat(7,1fr);
+    padding: 0 12px; margin-bottom: 6px;
+  }
+  .cal-dow-cell {
+    text-align: center; font-size: 9px; font-weight: 800;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--text-muted); padding: 4px 0;
+  }
+
+  /* Calendar grid */
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7,1fr);
+    gap: 4px; padding: 0 12px 14px;
+  }
+  .cal-day {
+    aspect-ratio: 1; border-radius: 10px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: default; position: relative;
+    transition: transform 0.15s;
+  }
+  .cal-day.has-workout {
+    cursor: pointer;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+  }
+  .cal-day.has-workout:active { transform: scale(0.88); }
+  .cal-day.is-today {
+    border: 2px solid var(--accent);
+  }
+  .cal-day.is-today .cal-day-num { color: var(--accent); }
+  .cal-day.is-empty { opacity: 0; pointer-events: none; }
+  .cal-day.is-future { opacity: 0.3; }
+
+  .cal-day-num {
+    font-size: 13px; font-weight: 700; color: var(--text-sec);
+    line-height: 1;
+  }
+  .cal-day.has-workout .cal-day-num { color: var(--accent); font-weight: 900; }
+
+  /* Workout dot / emoji */
+  .cal-day-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); margin-top: 3px;
+  }
+  .cal-day-emoji { font-size: 11px; margin-top: 2px; line-height: 1; }
+
+  /* Streak fire indicator */
+  .cal-streak-bar {
+    margin: 0 12px 14px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .cal-streak-icon { font-size: 28px; flex-shrink: 0; }
+  .cal-streak-val  { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: -1px; line-height: 1; }
+  .cal-streak-lbl  { font-size: 10px; font-weight: 700; color: var(--text-sec); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+  /* Monthly stats */
+  .cal-month-stats {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 7px; padding: 0 12px 14px;
+  }
+  .cal-mstat {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 12px 8px; text-align: center;
+  }
+  .cal-mstat-val { font-size: 22px; font-weight: 900; color: var(--accent); letter-spacing: -0.5px; line-height: 1; }
+  .cal-mstat-lbl { font-size: 9px; color: var(--text-sec); margin-top: 4px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
+
+  /* Heatmap anual estilo GitHub */
+  .cal-heatmap-wrap {
+    padding: 0 12px 16px;
+  }
+  .cal-heatmap-title {
+    font-size: 10px; font-weight: 800; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--text-sec); margin-bottom: 10px;
+  }
+  .cal-heatmap-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .cal-heatmap-scroll::-webkit-scrollbar { display: none; }
+  .cal-heatmap {
+    display: flex; gap: 3px; width: max-content;
+  }
+  .cal-hm-week { display: flex; flex-direction: column; gap: 3px; }
+  .cal-hm-cell {
+    width: 12px; height: 12px; border-radius: 3px;
+    background: var(--surface3);
+    transition: transform 0.1s;
+    cursor: default;
+    flex-shrink: 0;
+  }
+  .cal-hm-cell.trained { background: var(--accent); cursor: pointer; }
+  .cal-hm-cell.trained:active { transform: scale(1.3); }
+  .cal-hm-cell.today { box-shadow: 0 0 0 1.5px var(--accent); }
+
+  /* Month labels above heatmap */
+  .cal-hm-months {
+    display: flex; gap: 3px; margin-bottom: 4px; width: max-content;
+  }
+  .cal-hm-month-lbl {
+    width: 12px; font-size: 8px; font-weight: 700;
+    color: var(--text-muted); white-space: nowrap;
+    overflow: visible;
+  }
+
+  /* Pride banner */
+  .cal-pride {
+    margin: 0 12px 14px;
+    background: linear-gradient(135deg, rgba(200,245,0,0.12) 0%, rgba(77,255,160,0.08) 100%);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .cal-pride-icon { font-size: 32px; flex-shrink: 0; }
+  .cal-pride-title { font-size: 15px; font-weight: 900; color: var(--accent); margin-bottom: 2px; }
+  .cal-pride-sub   { font-size: 12px; color: var(--text-sec); line-height: 1.4; }
+
   /* ── WEIGHT GAME ── */
 
   /* Hero input */
@@ -1037,7 +1177,8 @@ const DEFAULT_SETTINGS = {
 const state = {
   view:          'dashboard',
   activeWorkout: null,
-  historyTab:    'sessions',  // 'sessions' | 'evolution'
+  historyTab:    'calendar',
+  calMonth:      new Date(),   // mês exibido no calendário
   timer: { interval:null, remaining:90, active:false },
 };
 
@@ -1782,19 +1923,24 @@ function renderHistory() {
   const el = document.getElementById('view-history');
   el.innerHTML = `
   <div class="history-tabs">
-    <button class="htab ${state.historyTab==='sessions'?'active':''}" onclick="setHistTab('sessions')">Sessões</button>
+    <button class="htab ${state.historyTab==='calendar'?'active':''}"  onclick="setHistTab('calendar')">📅 Calendário</button>
+    <button class="htab ${state.historyTab==='sessions'?'active':''}"  onclick="setHistTab('sessions')">Sessões</button>
     <button class="htab ${state.historyTab==='evolution'?'active':''}" onclick="setHistTab('evolution')">Evolução</button>
-    <button class="htab ${state.historyTab==='prs'?'active':''}" onclick="setHistTab('prs')">Recordes</button>
+    <button class="htab ${state.historyTab==='prs'?'active':''}"       onclick="setHistTab('prs')">Recordes</button>
   </div>
   <div id="hist-content"></div>`;
-
   renderHistContent();
 }
 
 function setHistTab(tab) {
   state.historyTab = tab;
   document.querySelectorAll('.htab').forEach(b =>
-    b.classList.toggle('active', b.textContent.toLowerCase().includes(tab.substring(0,4)))
+    b.classList.toggle('active',
+      (tab==='calendar'  && b.textContent.includes('Calendário')) ||
+      (tab==='sessions'  && b.textContent.includes('Sessões'))    ||
+      (tab==='evolution' && b.textContent.includes('Evolução'))   ||
+      (tab==='prs'       && b.textContent.includes('Recordes'))
+    )
   );
   renderHistContent();
 }
@@ -1802,9 +1948,332 @@ function setHistTab(tab) {
 function renderHistContent() {
   const el = document.getElementById('hist-content');
   if (!el) return;
+  if (state.historyTab === 'calendar')  el.innerHTML = buildCalendar();
   if (state.historyTab === 'sessions')  el.innerHTML = buildSessionsList();
   if (state.historyTab === 'evolution') el.innerHTML = buildEvolutionTab();
   if (state.historyTab === 'prs')       el.innerHTML = buildPRsTab();
+}
+
+/* ================================================================
+   CALENDÁRIO DE TREINOS
+================================================================ */
+
+/* Navegar entre meses */
+function calNav(dir) {
+  const d = new Date(state.calMonth);
+  d.setDate(1);
+  d.setMonth(d.getMonth() + dir);
+  state.calMonth = d;
+  document.getElementById('hist-content').innerHTML = buildCalendar();
+}
+
+function buildCalendar() {
+  const data    = load();
+  const history = data.history;
+  const today   = new Date();
+  const todayStr= today.toISOString().split('T')[0];
+
+  /* ── Mapa: date → [sessions] ── */
+  const dayMap = {};
+  history.forEach(s => {
+    const d = s.date.split('T')[0];
+    if (!dayMap[d]) dayMap[d] = [];
+    dayMap[d].push(s);
+  });
+
+  const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                  'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const DOWS   = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+  const yr  = state.calMonth.getFullYear();
+  const mo  = state.calMonth.getMonth();
+  const firstDay = new Date(yr, mo, 1).getDay();
+  const daysInMonth = new Date(yr, mo+1, 0).getDate();
+
+  /* ── Streaks do mês ── */
+  const totalStreak = calcStreak(history);
+  const thisMonthSessions = history.filter(s => {
+    const d = new Date(s.date);
+    return d.getFullYear() === yr && d.getMonth() === mo;
+  });
+  const daysThisMonth = new Set(thisMonthSessions.map(s => s.date.split('T')[0])).size;
+
+  /* Semana mais ativa deste mês */
+  const weekCounts = {};
+  thisMonthSessions.forEach(s => {
+    const d    = new Date(s.date);
+    const wNum = getWeekNum(d);
+    weekCounts[wNum] = (weekCounts[wNum] || 0) + 1;
+  });
+  const bestWeek = Math.max(0, ...Object.values(weekCounts));
+
+  /* Volume do mês */
+  let monthVol = 0;
+  thisMonthSessions.forEach(s =>
+    s.exercises.forEach(ex =>
+      ex.sets.forEach(set => { monthVol += (set.load||0) * (set.reps||0); })
+    )
+  );
+
+  /* ── Pride message ── */
+  const pride = buildPrideMessage(daysThisMonth, totalStreak, bestWeek, yr, mo, today);
+
+  /* ── Is current month? ── */
+  const isCurrentMonth = yr === today.getFullYear() && mo === today.getMonth();
+  const isFirstMonth   = history.length === 0 || (() => {
+    const oldest = [...history].sort((a,b)=>a.date.localeCompare(b.date))[0];
+    const od = new Date(oldest.date);
+    return yr <= od.getFullYear() && mo <= od.getMonth();
+  })();
+
+  let html = '';
+
+  /* ── Header ── */
+  html += `
+  <div class="cal-header">
+    <button class="cal-nav-btn" onclick="calNav(-1)" ${isFirstMonth?'disabled':''}>‹</button>
+    <div style="text-align:center">
+      <div class="cal-month-title">${MONTHS[mo]} ${yr}</div>
+      <div class="cal-month-sub">${daysThisMonth} dia${daysThisMonth!==1?'s':''} treinado${daysThisMonth!==1?'s':''}</div>
+    </div>
+    <button class="cal-nav-btn" onclick="calNav(+1)" ${isCurrentMonth?'disabled':''}>›</button>
+  </div>`;
+
+  /* ── Streak bar ── */
+  if (totalStreak > 0) {
+    const fireEmoji = totalStreak >= 30 ? '💎' : totalStreak >= 14 ? '🔥' : totalStreak >= 7 ? '🔥' : '⚡';
+    html += `
+    <div class="cal-streak-bar">
+      <div class="cal-streak-icon">${fireEmoji}</div>
+      <div>
+        <div class="cal-streak-val">${totalStreak} dia${totalStreak!==1?'s':''}</div>
+        <div class="cal-streak-lbl">Sequência atual</div>
+      </div>
+    </div>`;
+  }
+
+  /* ── Pride banner ── */
+  if (pride) {
+    html += `
+    <div class="cal-pride">
+      <div class="cal-pride-icon">${pride.icon}</div>
+      <div>
+        <div class="cal-pride-title">${pride.title}</div>
+        <div class="cal-pride-sub">${pride.sub}</div>
+      </div>
+    </div>`;
+  }
+
+  /* ── Monthly stats ── */
+  html += `
+  <div class="cal-month-stats">
+    <div class="cal-mstat">
+      <div class="cal-mstat-val">${daysThisMonth}</div>
+      <div class="cal-mstat-lbl">Dias</div>
+    </div>
+    <div class="cal-mstat">
+      <div class="cal-mstat-val">${bestWeek}</div>
+      <div class="cal-mstat-lbl">Melhor semana</div>
+    </div>
+    <div class="cal-mstat">
+      <div class="cal-mstat-val">${fmtVol(monthVol)}</div>
+      <div class="cal-mstat-lbl">Volume</div>
+    </div>
+  </div>`;
+
+  /* ── Day-of-week labels ── */
+  html += `<div class="cal-dow">`;
+  DOWS.forEach(d => html += `<div class="cal-dow-cell">${d}</div>`);
+  html += `</div>`;
+
+  /* ── Calendar grid ── */
+  html += `<div class="cal-grid">`;
+
+  // Células vazias antes do dia 1
+  for (let i = 0; i < firstDay; i++) {
+    html += `<div class="cal-day is-empty"></div>`;
+  }
+
+  // Dias do mês
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr  = `${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const sessions = dayMap[dateStr] || [];
+    const trained  = sessions.length > 0;
+    const isToday  = dateStr === todayStr;
+    const isFuture = dateStr > todayStr;
+
+    let cls = 'cal-day';
+    if (trained)  cls += ' has-workout';
+    if (isToday)  cls += ' is-today';
+    if (isFuture) cls += ' is-future';
+
+    // Emoji do treino
+    const emoji = trained ? getWorkoutEmoji(sessions[0].name) : '';
+
+    html += `<div class="${cls}"
+      ${trained ? `onclick="calDayClick('${dateStr}')"` : ''}
+      title="${trained ? sessions.map(s=>s.name).join(', ') : ''}">
+      <div class="cal-day-num">${day}</div>
+      ${trained ? `<div class="cal-day-emoji">${emoji}</div>` : isToday ? `<div style="width:4px;height:4px;border-radius:50%;background:var(--accent);margin-top:3px"></div>` : ''}
+    </div>`;
+  }
+
+  html += `</div>`;
+
+  /* ── Heatmap anual ── */
+  html += buildYearHeatmap(dayMap, today);
+
+  return html;
+}
+
+/* Clique num dia treinado → abre detalhes */
+function calDayClick(dateStr) {
+  const data = load();
+  const sessions = data.history.filter(s => s.date.startsWith(dateStr));
+  if (!sessions.length) return;
+  if (sessions.length === 1) {
+    openSessionDetail(sessions[0].id);
+    return;
+  }
+  // Múltiplos treinos no mesmo dia
+  let body = sessions.map(s => `
+  <div class="hist-item" onclick="closeModal();openSessionDetail('${s.id}')">
+    <div><div class="hist-name">${s.name}</div><div class="hist-meta">${fmtDur(s.duration||0)}</div></div>
+    <span class="hist-arrow">›</span>
+  </div>`).join('');
+  openModal('📅 ' + fmtDateLong(dateStr+'T12:00:00'), `<div class="card" style="margin:0">${body}</div>`);
+}
+
+/* Emoji por nome do treino */
+function getWorkoutEmoji(name) {
+  const n = (name||'').toLowerCase();
+  if (/peito|peck|supino/.test(n)) return '🫀';
+  if (/perna|leg|agach/.test(n))   return '🦵';
+  if (/costa|remada|pull/.test(n)) return '🔙';
+  if (/bícep|bicep|rosca/.test(n)) return '💪';
+  if (/ombro|shoulder/.test(n))    return '🏋️';
+  if (/braço|trícep/.test(n))      return '💪';
+  if (/cardio|corr/.test(n))       return '🏃';
+  return '⚡';
+}
+
+/* Número da semana no ano */
+function getWeekNum(d) {
+  const date = new Date(d);
+  date.setHours(0,0,0,0);
+  date.setDate(date.getDate() + 3 - (date.getDay()+6)%7);
+  const week1 = new Date(date.getFullYear(),0,4);
+  return 1 + Math.round(((date-week1)/86400000 - 3 + (week1.getDay()+6)%7)/7);
+}
+
+/* Mensagens de orgulho */
+function buildPrideMessage(days, streak, bestWeek, yr, mo, today) {
+  const isCurrentMonth = yr === today.getFullYear() && mo === today.getMonth();
+  const daysInMo = new Date(yr, mo+1, 0).getDate();
+  const daysPassed = isCurrentMonth ? today.getDate() : daysInMo;
+  const pct = Math.round((days / daysPassed) * 100);
+
+  if (days === 0) return null;
+
+  if (streak >= 30) return { icon:'💎', title:'30 dias consecutivos!', sub:'Você transformou o treino em estilo de vida. Lendário.' };
+  if (streak >= 14) return { icon:'🔥', title:`${streak} dias seguidos!`, sub:'Duas semanas sem parar. Disciplina de atleta.' };
+  if (streak >= 7)  return { icon:'🔥', title:'Uma semana invicto!', sub:'7 dias seguidos. O hábito está se formando.' };
+  if (days >= 20)   return { icon:'🏆', title:`${days} dias treinados!`, sub:'Mais de 20 dias nesse mês. Você é uma máquina.' };
+  if (pct >= 80)    return { icon:'⭐', title:`${pct}% de aproveitamento!`, sub:`${days} de ${daysPassed} dias. Consistência impressionante.` };
+  if (bestWeek >= 5)return { icon:'💪', title:`${bestWeek} dias em uma semana!`, sub:'Semana quase perfeita. Orgulhe-se disso.' };
+  if (days >= 12)   return { icon:'😤', title:`${days} treinos em ${mo===today.getMonth()?'neste':'nesse'} mês`, sub:'Mais da metade dos dias. Continue assim!' };
+  if (days >= 6)    return { icon:'⚡', title:`${days} treinos no mês`, sub:'Construindo consistência dia após dia.' };
+  if (days >= 1)    return { icon:'✅', title:`${days} treino${days>1?'s':''} registrado${days>1?'s':''}`, sub:'Cada treino conta. Você apareceu.' };
+  return null;
+}
+
+/* Heatmap anual estilo GitHub */
+function buildYearHeatmap(dayMap, today) {
+  const MONTH_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+  // Últimas 52 semanas + dias parciais da semana atual
+  const end   = new Date(today);
+  end.setHours(23,59,59,999);
+  const start = new Date(end);
+  start.setDate(start.getDate() - 364);
+  // Volta ao domingo da semana inicial
+  start.setDate(start.getDate() - start.getDay());
+
+  // Agrupar por semana
+  const weeks  = [];
+  const cursor = new Date(start);
+  let week     = [];
+  let lastMonth = -1;
+  const monthPositions = []; // { month, weekIdx }
+
+  while (cursor <= end) {
+    const ds  = cursor.toISOString().split('T')[0];
+    const mo  = cursor.getMonth();
+    if (mo !== lastMonth && cursor.getDay() === 0) {
+      monthPositions.push({ month: mo, weekIdx: weeks.length });
+      lastMonth = mo;
+    }
+    week.push({ date: ds, trained: !!dayMap[ds], today: ds === today.toISOString().split('T')[0] });
+    if (cursor.getDay() === 6) {
+      weeks.push(week);
+      week = [];
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  if (week.length) weeks.push(week);
+
+  // Total de dias treinados no último ano
+  const totalDays = Object.keys(dayMap).filter(d => d >= start.toISOString().split('T')[0]).length;
+
+  let html = `
+  <div class="cal-heatmap-wrap">
+    <div class="cal-heatmap-title">🗓 Último ano — ${totalDays} dia${totalDays!==1?'s':''} treinado${totalDays!==1?'s':''}</div>
+    <div class="cal-heatmap-scroll">`;
+
+  // Labels dos meses
+  html += `<div class="cal-hm-months">`;
+  weeks.forEach((_, wi) => {
+    const mp = monthPositions.find(m => m.weekIdx === wi);
+    html += `<div class="cal-hm-month-lbl" style="width:15px">${mp ? MONTH_SHORT[mp.month] : ''}</div>`;
+  });
+  html += `</div>`;
+
+  // Grade
+  html += `<div class="cal-heatmap">`;
+  weeks.forEach(week => {
+    html += `<div class="cal-hm-week">`;
+    // Preenche até 7 células
+    for (let i = 0; i < 7; i++) {
+      const cell = week[i];
+      if (!cell) {
+        html += `<div class="cal-hm-cell"></div>`;
+        continue;
+      }
+      let cls = 'cal-hm-cell';
+      if (cell.trained) cls += ' trained';
+      if (cell.today)   cls += ' today';
+      const sessions = dayMap[cell.date] || [];
+      const tip = cell.trained ? sessions.map(s=>s.name).join(', ') : '';
+      html += `<div class="${cls}"
+        ${cell.trained ? `onclick="calDayClick('${cell.date}')"` : ''}
+        title="${tip}"></div>`;
+    }
+    html += `</div>`;
+  });
+  html += `</div></div>`; // .cal-heatmap + scroll
+
+  // Legenda
+  html += `
+    <div style="display:flex;align-items:center;gap:6px;margin-top:8px;justify-content:flex-end">
+      <span style="font-size:9px;color:var(--text-muted)">Menos</span>
+      <div style="width:10px;height:10px;border-radius:2px;background:var(--surface3)"></div>
+      <div style="width:10px;height:10px;border-radius:2px;background:rgba(200,245,0,0.4)"></div>
+      <div style="width:10px;height:10px;border-radius:2px;background:var(--accent)"></div>
+      <span style="font-size:9px;color:var(--text-muted)">Mais</span>
+    </div>
+  </div>`; // .cal-heatmap-wrap
+
+  return html;
 }
 
 function buildSessionsList() {
